@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="background.css">
+  <script type="text/javascript" src="code.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+</head>
+<body>      
+    <div class="login-signup-container">
+        <div class="form-container" id="login-container" style="display:block">
+            <div class="form-heading">Log In</div>
+            <form id="login" action="">
+                <label for="username">Enter your username</label>
+                <input type="text" id="username" name="username" autofocus placeholder="Username" required>
+                <label for="password">Enter your password</label>
+                <input type="text" id="password" name="password" placeholder="Password" required>
+                <input type="button" value="Log In" onclick="doLogin();">
+            </form>
+            <span id="loginResult"></span>
+            <div class="signup-text" onclick="enterSignUp();">Sign Up</div>
+        </div>
+        <div class="form-container" id="signup-container" style="display:none">
+            <div class="signup">
+                <div class="form-heading">Sign Up</div>
+                <form id="form" action="">
+                    <label for="firstname">Enter your first name</label>
+                    <input type="text" id="firstname" name="firstname" autofocus placeholder="First Name" required>
+                    <label for="lastname">Enter your lastt name</label>
+                    <input type="text" id="lastname" name="lastname" autofocus placeholder="Last Name" required>
+                    <label for="username">Enter a username</label>
+                    <input type="text" id="username" name="username" autofocus placeholder="Username" required>
+                    <label for="password">Create a password</label>
+                    <input type="text" id="password" name="password" placeholder="Password" required>
+                    <label for="password">Confirm password</label>
+                    <input type="text" id="password" name="password" placeholder="Confirm Password" required>
+                    <input type="button" value="Sign Up" onclick="doSignUp();">
+                </form>
+                <span id="loginResult"></span>
+                <div class="signup-text" onclick="enterLogIn();">Log In</div>
+            </div>
+        </div>
+</body>
+</html>
