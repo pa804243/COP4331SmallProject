@@ -13,7 +13,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE (Login=? AND Password=?)");
+		$stmt = $conn->prepare("SELECT ID, FirstName, LastName FROM Users WHERE (Login = ? AND Password = ?)");
 		$stmt->bind_param("ss", $inData["login"], $inData["password"]);
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -36,22 +36,21 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithError($err)
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithInfo( $firstName, $lastName, $id )
+	function returnWithInfo($firstName, $lastName, $id)
 	{
 		$retValue = '{"id":' . $id . ',"firstName":"' . $firstName . '","lastName":"' . $lastName . '","error":""}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
-
 ?>
