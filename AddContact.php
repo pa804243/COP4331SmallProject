@@ -1,43 +1,46 @@
 <?php
-    $inData = getRequestInfo();
-    
-    $firstName = $inData["firstName"];
-  $lastName = $inData["lastName"];
-    $phoneNumber = $inData["phoneNumber"];
-  $emailAddress = $inData["emailAddress"];
-  $userId = $inData["userId"];
+	
+	error_reporting(E_ALL);
+	ini_set('display_errors', 1);
 
+	$inData = getRequestInfo();
+	
+	$firstName = $inData["firstName"];
+	$lastName = $inData["lastName"];
+	$phoneNumber = $inData["phoneNumber"];
+	$emailAddress = $inData["emailAddress"];
+	$userId = $inData["userId"];
 
-    $conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
-    if ($conn->connect_error)
-    {
-            returnWithError( $conn->connect_error );
-    }
-    else
-    {
-            $stmt = $conn->prepare("INSERT into Contacts (FirstName,LastName,PhoneNumber,EmailAddress, UserID) VALUES(?,?,?,?,?)");
-            $stmt->bind_param("ssssi", $firstName, $lastName, $phoneNumber, $emailAddress, $userId);
-            $stmt->execute();
-            $stmt->close();
-            $conn->close();
-            returnWithError("");
-        }
+	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
+	if ($conn->connect_error)
+	{
+		returnWithError($conn->connect_error);
+	}
+	else
+	{
+		$stmt = $conn->prepare("INSERT into Contacts (FirstName, LastName, Phone, Email, UserID) VALUES(?, ?, ?, ?, ?)");
+		$stmt->bind_param("ssssi", $firstName, $lastName, $phoneNumber, $emailAddress, $userId);
+		$stmt->execute();
+		$stmt->close();
+		$conn->close();
+		returnWithError("");
+	}
 
-    function getRequestInfo()
-    {
-        return json_decode(file_get_contents('php://input'), true);
-    }
+	function getRequestInfo()
+	{
+		return json_decode(file_get_contents('php://input'), true);
+	}
 
-    function sendResultInfoAsJson( $obj )
-    {
-        header('Content-type: application/json');
-        echo $obj;
-    }
+	function sendResultInfoAsJson($obj)
+	{
+		header('Content-type: application/json');
+		echo $obj;
+	}
 
-    function returnWithError( $err )
-    {
-        $retValue = '{"error":"' . $err . '"}';
-        sendResultInfoAsJson( $retValue );
-    }
+	function returnWithError($err)
+	{
+		$retValue = '{"error":"' . $err . '"}';
+		sendResultInfoAsJson($retValue);
+	}
 
 ?>
