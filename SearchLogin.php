@@ -12,7 +12,7 @@
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Users WHERE Login= ?");
+		$stmt = $conn->prepare("SELECT * FROM Users WHERE Login = ?");
 		$stmt->bind_param("s", $inData["login"]);
 		$stmt->execute();
 
@@ -23,13 +23,13 @@
 			$searchCount++;
 		}
 
-		if( $searchCount == 0 )
+		if($searchCount == 0)
 		{
-			returnWithInfo( "" );
+			returnWithInfo("");
 		}
 		else
 		{
-			returnWithError( "Username has been taken" );
+			returnWithError("Username has been taken");
 		}
 
 		$stmt->close();
@@ -41,22 +41,22 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithError($err)
 	{
 		$retValue = '{"Error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithInfo( $info )
+	function returnWithInfo($info)
 	{
 		$retValue = '{"Error": "' . $info . '"}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
 
 ?>
