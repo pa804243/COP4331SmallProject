@@ -8,11 +8,11 @@
 	$conn = new mysqli("localhost", "TheBeast", "WeLoveCOP4331", "COP4331");
 	if ($conn->connect_error)
 	{
-		returnWithError( $conn->connect_error );
+		returnWithError($conn->connect_error);
 	}
 	else
 	{
-		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName like ? OR LastName like ? OR PhoneNumber like ? OR EmailAddress like ?) AND UserID=?");
+		$stmt = $conn->prepare("SELECT * FROM Contacts WHERE (FirstName like ? OR LastName like ? OR Phone like ? OR Email like ?) AND UserID = ?");
 		$colorName = "%" . $inData["search"] . "%";
 		$stmt->bind_param("sssss", $colorName, $colorName,  $colorName,  $colorName, $inData["userId"]);
 		$stmt->execute();
@@ -21,21 +21,21 @@
 
 		while($row = $result->fetch_assoc())
 		{
-			if( $searchCount > 0 )
+			if($searchCount > 0)
 			{
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '{"FirstName" : "' . $row["FirstName"]. '", "LastName" : "' . $row["LastName"]. '", "PhoneNumber" : "' . $row["PhoneNumber"]. '", "EmailAddress" : "' . $row["EmailAddress"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
+			$searchResults .= '{"FirstName" : "' . $row["FirstName"]. '", "LastName" : "' . $row["LastName"]. '", "Phone" : "' . $row["Phone"]. '", "Email" : "' . $row["Email"]. '", "UserID" : "' . $row["UserID"].'", "ID" : "' . $row["ID"]. '"}';
 		}
 
-		if( $searchCount == 0 )
+		if($searchCount == 0)
 		{
-			returnWithError( "No Records Found" );
+			returnWithError("No Records Found");
 		}
 		else
 		{
-			returnWithInfo( $searchResults );
+			returnWithInfo($searchResults);
 		}
 
 		$stmt->close();
@@ -47,22 +47,21 @@
 		return json_decode(file_get_contents('php://input'), true);
 	}
 
-	function sendResultInfoAsJson( $obj )
+	function sendResultInfoAsJson($obj)
 	{
 		header('Content-type: application/json');
 		echo $obj;
 	}
 
-	function returnWithError( $err )
+	function returnWithError($err)
 	{
 		$retValue = '{"id":0,"firstName":"","lastName":"","error":"' . $err . '"}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
 
-	function returnWithInfo( $searchResults )
+	function returnWithInfo($searchResults)
 	{
 		$retValue = '{"results":[' . $searchResults . '],"error":""}';
-		sendResultInfoAsJson( $retValue );
+		sendResultInfoAsJson($retValue);
 	}
-
 ?>
