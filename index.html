@@ -1,23 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="background.css">
-  <script type="text/javascript" src="code.js"></script>
+  <link rel="stylesheet" href="LAMPSTACK/css/style.css">
+  <script type="text/javascript" src="LAMPSTACK/js/code2.js"></script>
+  <script type="text/javascript" src="LAMPSTACK/js/md5.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
 </head>
-<body>      
+<title>Knights Connect</title>
+<html lang="en">
+
+</html>
+<meta name="description" content="Contact manager to solve all your problems.">
+
+</head>
+<body>
+    <div class="background" style="background-position: bottom; filter: blur(5px);"></div>     
     <div class="login-signup-container">
         <div class="form-container" id="login-container" style="display:block">
             <div class="form-heading">Log In</div>
             <form id="login" action="">
                 <label for="username">Enter your username</label>
-                <input type="text" id="username" name="username" autofocus placeholder="Username" required>
+                <input type="text" id="username-login" name="username" autofocus placeholder="Username" required>
                 <label for="password">Enter your password</label>
-                <input type="text" id="password" name="password" placeholder="Password" required>
+                <input type="text" id="password-login" name="password" placeholder="Password" style="-webkit-text-security: disc" required>
                 <input type="button" value="Log In" onclick="doLogin();">
             </form>
-            <span id="loginResult"></span>
+            <div id="loginResult" style="font-size: medium; text-align: center; color: #FF0000; margin-top: 10px;"></div>
             <div class="signup-text" onclick="enterSignUp();">Sign Up</div>
         </div>
         <div class="form-container" id="signup-container" style="display:none">
@@ -26,17 +34,17 @@
                 <form id="form" action="">
                     <label for="firstname">Enter your first name</label>
                     <input type="text" id="firstname" name="firstname" autofocus placeholder="First Name" required>
-                    <label for="lastname">Enter your lastt name</label>
+                    <label for="lastname">Enter your last name</label>
                     <input type="text" id="lastname" name="lastname" autofocus placeholder="Last Name" required>
                     <label for="username">Enter a username</label>
-                    <input type="text" id="username" name="username" autofocus placeholder="Username" required>
+                    <input type="text" id="username-signup" name="username" oninput="validateUsername();" autofocus placeholder="Username" pattern=".{5,}" required>
+                    <div class="signup-valid" id="username-valid" style="display: none;"></div>
                     <label for="password">Create a password</label>
-                    <input type="text" id="password" name="password" placeholder="Password" required>
-                    <label for="password">Confirm password</label>
-                    <input type="text" id="password" name="password" placeholder="Confirm Password" required>
+                    <input type="text" id="password-signup" name="password" oninput="validatePassword();" placeholder="Password" required>
+                    <div class="signup-valid" id="password-valid" style="display: none;"></div>
                     <input type="button" value="Sign Up" onclick="doSignUp();">
                 </form>
-                <span id="loginResult"></span>
+                <div id="signupResult" style="font-size: medium; text-align: center; color: #FF0000; margin-top: 10px;"></div>
                 <div class="signup-text" onclick="enterLogIn();">Log In</div>
             </div>
         </div>
