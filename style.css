@@ -2,30 +2,146 @@ body {
     background-color: #000000;
     height: 100%;
     margin: 0;
-    overflow: hidden;
     font-family: 'Poppins';
 }
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-position: bottom;
+    background-image: url("../images/background_image.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.shark {
+    position: absolute;
+    width: 2.5%;
+    animation-name: swimClockwise;
+    animation-duration: 2s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+@keyframes swimClockwise {
+    0% {
+      transform: translate(0px, 0px) rotate(0deg);
+    }
+    12.5% {
+        transform: translate(25px, -12px) rotate(-5deg);
+    }
+    25% {
+        transform: translate(50px, -15px) rotate(0deg);
+    }
+    37.5% {
+        transform: translate(75px, -12px) rotate(15deg);
+    }
+    50% {
+      transform: translate(100px, 0px) rotate(-15deg) scaleX(-.2);
+    }
+    62.5% {
+        transform: translate(75px, 10px) rotate(-5deg) scaleX(-1);
+    }
+    75% {
+      transform: translate(50px, 15px) rotate(0deg) scaleX(-1);
+    }
+    87.5% {
+        transform: translate(25px, 12px) rotate(15deg) scaleX(-1);
+    }
+    100% {
+        transform: translate(0px, 0px) rotate(15deg) scaleX(1);
+    }
+}
+@keyframes initialPanUp {
+    from {
+        background-position: bottom;
+        filter: blur(5px);
+    }
+
+    to {
+        background-position: top;
+        filter: blur(0px);
+    }
+}
+
+@keyframes panUp {
+    from {
+        background-position: bottom;
+    }
+
+    to {
+        background-position: top;
+    }
+}
+
+@keyframes panDown {
+    from {
+        background-position: top;
+    }
+
+    to {
+        background-position: bottom;
+    }
+}
+
 .form-container {
+    position: absolute;
     width: 375px;
-    margin-left: auto;
-    margin-right: auto;
     margin-top: 25px;
-    margin-bottom: auto;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
     border-radius: 15px;
     background-color: #EAEAEA;
     box-shadow: 0px 0px 7px 10px rgb(0 0 0 / 20%);
- }
- .form-heading {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.search-container {
+    position: fixed;
+    height: 600px;
+    width: 1200px;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    border-radius: 15px;
+    background-color: #EAEAEA;
+    box-shadow: 0px 0px 7px 10px rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.add-container {
+    position: fixed;
+    height: 475px;
+    width: 700px;
+    top: 100px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    border-radius: 15px;
+    background-color: #EAEAEA;
+    box-shadow: 0px 0px 7px 10px rgb(0 0 0 / 20%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-heading {
     font-size: xx-large;
     font-weight: bolder;
     color: #000000;
     margin-left: 15px;
     padding-top: 10px;
     margin-bottom: 10px;
- }
- label{
+}
+
+label {
     margin-left: 15px;
 }
+
 input[type=text] {
     height: 50px;
     width: 335px;
@@ -35,37 +151,50 @@ input[type=text] {
     margin-bottom: 15px;
     background-color: #D9D9D9;
     border-width: 0;
-    font-size:large;
+    font-size: large;
     padding-left: 10px;
 }
+
 input::placeholder {
     font-size: large;
 }
+
 input[type=button] {
     font-size: x-large;
     font-weight: bold;
     color: #FFFFFF;
     height: 50px;
-    width: 335px;
+    width: 200px;
     border-radius: 15px;
-    margin-left: 15px;
-    margin-top: 10px;
+    margin: 10px auto;
     background-color: #b98b27;
     border-width: 0;
+    text-align: center;
+    display: block;
 }
+
+.signup-valid {
+    font-size: medium;
+    color: #fe1414;
+    margin-top: 10px;
+    padding-bottom: 15px;
+    text-align: center;
+}
+
 input[type=button]:hover {
     font-size: x-large;
     font-weight: bold;
     color: #FFFFFF;
     height: 50px;
-    width: 335px;
+    width: 200px;
     border-radius: 15px;
-    margin-left: 15px;
-    margin-top: 10px;
+    margin: 10px auto;
     background-color: #cc992d;
     border-width: 0;
     cursor: pointer;
+    display: block;
 }
+
 .signup-text {
     font-size: medium;
     color: #000000;
@@ -74,6 +203,7 @@ input[type=button]:hover {
     padding-bottom: 15px;
     text-align: center;
 }
+
 .signup-text:hover {
     font-size: medium;
     color: #7a7a7a;
@@ -82,4 +212,129 @@ input[type=button]:hover {
     padding-bottom: 15px;
     text-align: center;
     cursor: pointer;
- }
+}
+
+.pan-down {
+    position: fixed;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 55px solid rgba(169, 169, 169, 0.4);
+    filter: drop-shadow(0px 7px 10px rgb(0 0 0 / 20%));
+}
+
+.pan-down:hover {
+    position: fixed;
+    bottom: 25px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-top: 55px solid rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(0px 7px 10px rgb(0 0 0 / 20%));
+    cursor: pointer;
+}
+
+.pan-up {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 55px solid rgba(255, 255, 255, 0.2);
+    filter: drop-shadow(0px 7px 10px rgb(0 0 0 / 20%));
+}
+
+.pan-up:hover {
+    position: fixed;
+    top: 25px;
+    left: 0;
+    right: 0;
+    margin-inline: auto;
+    width: 0;
+    height: 0;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 55px solid rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(0px 7px 10px rgb(0 0 0 / 20%));
+    cursor: pointer;
+}
+
+.logout-button {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 125px;
+    height: 35px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: large;
+    color: #FFFFFF;
+    padding-top: 5px;
+    background-color: #b98b27;
+}
+
+.logout-button:hover {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 125px;
+    height: 35px;
+    border-radius: 15px;
+    background-color: #cc992d;
+    text-align: center;
+    font-size: large;
+    color: #FFFFFF;
+    padding-top: 5px;
+    cursor: pointer;
+}
+
+input:focus {
+    outline: 2px solid #b98b27;
+    border-color: #b98b27;
+    box-shadow: 0 0 5px rgba(185, 139, 39, 0.5);
+}
+
+.collapse-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: solid #b98b27;
+    border-width: 0 10px 10px 0;
+    transform: rotate(45deg);
+    display: inline-block;
+    padding: 10px;
+}
+
+.collapse-button:hover {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border: solid #cc992d;
+    border-width: 0 10px 10px 0;
+    transform: rotate(45deg);
+    display: inline-block;
+    padding: 10px;
+    cursor: pointer;
+}
+
+@keyframes collapse {
+    from {
+        transform: rotate(45deg);
+    }
+    to {
+        transform: rotate(135deg);
+    }
+}
