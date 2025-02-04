@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="LAMPSTACK/css/styles.css">
+  <script type="text/javascript" src="LAMPSTACK/js/code2.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
+</head>
+<title>Knights Connect</title>
+<html lang="en">
+
+</html>
+<meta name="description" content="Contact manager to solve all your problems.">
+
+</head>
+
+<body onload="readCookie(); searchContact2(); spiritSplash();">
+  <div class="background" id="background" style="background-position: bottom;"></div>
+  <h1 id="userName" style="font-size: large; color: #FFFFFF; margin-left: 10px; position: absolute;"></h1>
+  <div id="sharks" style="visibility: hidden;">
+    <img class="shark" src="LAMPSTACK/images/sharkfin.png" style="left: 20%; bottom: 8%;">
+    <img class="shark" src="LAMPSTACK/images/sharkfin.png" style="left: 20%; bottom: 8%; animation-delay: 1s;">
+  </div>
+  <img id="fountain" src="LAMPSTACK/images/fountain.gif"
+    style="opacity: 0; position: absolute; width: 600px; left: 50%; bottom: -135px; transform: translate(-50%, 0);"
+    onclick="fountain();">>
+  <!--<div class="pan-down" id="panDown" onclick="panDown();"></div>-->
+  <!--<div class="pan-up" id="panUp" onclick="panUp();" style="display: none;"></div>-->
+  <div class="logout-button" id="logout" onclick="doLogout();">Log Out</div>
+  <div class="search-container" id="search-container">
+    <div class="form-heading">Knight Connect</div>
+    <div class="collapse-button" id="collapse-button" style="animation: none;" onclick="collapseSearchContainer();"></div>
+    <form id="contact-form" action="" style="display: block;">
+      <input type="text" id="searchContact" name="searchContact" placeholder="Search Contacts">
+      <input type="button" value="Search" onclick="searchContact2();">
+      <input type="button" value="Add" onclick="enterAddContact();">
+      <div id="searchResult">
+        <style>
+          table,
+          th,
+          td {
+            border: 1px solid #000000;
+          }
+        </style>
+
+        <table style="width:100%">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th> Edit </th>
+              <th>Delete</th>
+            </tr>
+            <thead>
+              <!-- <tr>
+            <td>John</td>
+            <td>Doe</td>
+            <td>1234567890</td>
+            <td>JD@gmail.com</td>
+          </tr>
+          <tr>
+            <td>Jim</td>
+            <td>Smith</td>
+            <td>0987654321</td>
+            <td>JS@gmail.com</td>
+          </tr> -->
+
+            <tbody id="contactsBody">
+            </tbody>
+        </table>
+      </div>
+
+    </form>
+  </div>
+
+  <div class="add-container" id="add-container" style="display: none;">
+    <div class="form-heading">Add Contact</div>
+    <form id="addContact-form" action="">
+      <input type="text" id="firstName" name="firstName" placeholder="First Name" required><br>
+      <input type="text" id="lastName" name="lastName" placeholder="Last Name" required><br>
+      <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required><br>
+      <input type="text" id="emailAddress" name="emailAddress" placeholder="Email Address" required><br>
+      <div class="button-group">
+        <input type="button" value="Add Contact" onclick="addContact();">
+        <input type="button" value="Cancel" onclick="enterSearchContact();">
+      </div>
+    </form>
+    <div id="contactAddResult"></div>
+  </div>
+
+
+  </script>
+
+</body>
+
+</html>
